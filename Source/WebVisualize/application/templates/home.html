@@ -1,0 +1,118 @@
+{% extends "layout.html" %} {% block content %}
+<div style="
+    height: 220px;
+    background-image: url('../static//img/web-backgroud.jpg');
+  "></div>
+<div class="d-flex flex-column gap-2 my-4">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="web-title">Data Insights Explorer</h1>
+      <div class="linear-underlined mx-auto m-2"></div>
+      <p>Phát huy tiềm năng của dữ liệu cho một tương lai thông minh hơn</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about bg-light">
+    <div class="d-flex gap-2 mb-4">
+      <div class="rectangle bg-success"></div>
+      <h2>Giới thiệu</h2>
+    </div>
+    <p>
+      Chào mừng bạn đến với trang web của chúng tôi! Chúng tôi cung cấp một nền tảng trực quan hóa và tìm kiếm dữ liệu từ các trang tuyển dụng và khóa học. Với chức năng trực quan hóa, bạn có thể khám phá xu hướng tuyển dụng và khóa học qua biểu đồ. Chức năng tìm kiếm giúp bạn nhanh chóng tìm việc và khóa học phù hợp với tiêu chí của bạn. Với giao diện thân thiện và tính năng mạnh mẽ, trang web của chúng tôi sẽ giúp bạn nắm bắt thông tin quan trọng và đưa ra quyết định thông minh. Hãy khám phá ngay!
+    </p>
+  </section>
+
+  <!-- Functions Section -->
+  <section class="features d-flex flex-column gap-3">
+    <div class="d-flex gap-2">
+      <div class="rectangle bg-info"></div>
+      <h2 class="text-left">Chức năng</h2>
+    </div>
+    <span class="fs-5 fw-bold">Trực quan hóa dữ liệu</span>
+    <div class="row row-cols-auto gap-5 mx-0">
+      <div class="feature col d-flex gap-3 justify-content-around border border-primary rounded-3">
+        <img class="rounded-2"
+             src="../../static/img/data-visualization.png"
+             width="150"
+             height="100"
+             alt="Visualization IMG" />
+        <div class="d-flex flex-column gap-1 align-items-center justify-content-between text-center">
+          <p class="px-1  text-body">Trực quan hóa, thống kê dữ liệu tuyển dụng nhằm đưa xu hướng tuyển dụng hiện nay</p>
+          <a href="/job-visualization/datawarehouse"
+             class="btn btn-outline-primary mx-auto">Dữ liệu tuyển dụng</a>
+        </div>
+      </div>
+
+      <div class="feature col d-flex gap-3 justify-content-around border border-warning rounded-3">
+        <img class="rounded-2"
+             src="../../static/img/course-visualization.png"
+             width="150"
+             height="100"
+             alt="Visualization IMG" />
+        <div class="d-flex flex-column gap-1 align-items-center justify-content-between text-center">
+          <p class="px-1  text-body">Trực quan hóa, thống kê dữ liệu khóa học nhằm đưa xu hướng đào tạo hiện nay</p>
+          <a href="/course-visualization/datawarehouse"
+             class="btn btn-outline-warning mx-auto">Dữ liệu khóa học</a>
+        </div>
+      </div>
+
+    </div>
+    <span class="fs-5 fw-bold">Chức năng tìm kiếm</span>
+    <div class="row row-cols-auto gap-5 mx-0">
+      <div class="feature col d-flex gap-3 justify-content-around border border-success rounded-3">
+        <img class="rounded-2"
+             src="../../static/img/find-course.png"
+             width="150"
+             height="100"
+             alt="Search IMG" />
+        <div class="d-flex flex-column gap-1 align-items-center justify-content-between text-center">
+          <p class="px-1 text-body text-w">Tìm kiếm khóa học theo nhu cầu cá nhân: ngôn ngữ lập trình, công cụ lập trình,...</p>
+          <a href="/course-finder"
+             class="btn btn-outline-success mx-auto">Tìm kiếm khóa học</a>
+        </div>
+      </div>
+
+      <div class="feature col d-flex gap-3 justify-content-around border border-danger rounded-3">
+        <img class="rounded-2"
+             src="../../static/img/job-posting.png"
+             width="150"
+             height="100"
+             alt="Search IMG" />
+        <div class="d-flex flex-column gap-1 align-items-center justify-content-between text-center">
+          <p class="px-1 text-body text-w">Tìm kiếm việc làm phù hợp với các kỹ năng: ngôn ngữ lập trình, công cụ lập trình,... </p>
+          <a href="/job-finder"
+             class="btn btn-outline-danger mx-auto">Tìm kiếm việc làm</a>
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+
+<!-- Statistics Section -->
+<section class="statistics bg-light">
+  <div class="d-flex gap-2">
+    <div class="rectangle bg-warning"></div>
+    <h2>Thống kê nổi bật</h2>
+  </div>
+  <div class="statistics-list d-flex gap-5 mt-3">
+    <div class="statistic-item bg-info">
+      <h3>10000+</h3>
+      <h5>Tin tuyển dụng</h5>
+    </div>
+    <div class="statistic-item bg-success">
+      <h3>20000+</h3>
+      <h5>Khóa học</h5>
+    </div>
+    <div class="statistic-item bg-warning">
+      <h3>5+ Triệu</h3>
+      <h5>Người dùng</h5>
+    </div>
+  </div>
+</section>
+</div>
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/home.css') }}" />
+{% endblock %} {% endblock %}

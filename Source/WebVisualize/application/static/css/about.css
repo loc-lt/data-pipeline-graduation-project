@@ -1,0 +1,18 @@
+.item-member {
+  width: 330px;
+  border: 2px solid rgb(88, 151, 233);
+  border-radius: 15px;
+}
+
+.description {
+  text-align: justify;
+  padding: 4px;
+}
+
+.avatar {
+  margin-bottom: 20px;
+}
+
+.name {
+  font-size: 18px;
+}

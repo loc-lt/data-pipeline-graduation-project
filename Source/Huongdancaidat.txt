@@ -1,0 +1,35 @@
+Hướng dẫn cài đặt website
+Bước 1: Cài đặt python cho máy
+Truy cập trang web chính thức của Python để tải xuống phiên bản Python mới nhất: https://www.python.org/downloads/
+Tải xuống bản cài đặt Python phù hợp với hệ điều hành của bạn. Hãy chắc chắn rằng bạn chọn phiên bản có gói cài đặt cho pip đi kèm.
+Chạy tệp cài đặt Python mà bạn vừa tải xuống và làm theo hướng dẫn trên màn hình để cài đặt Python. Khi cài đặt, hãy nhớ chọn tùy chọn "Add Python to PATH" để Python và pip có thể được gọi từ bất kỳ vị trí nào trên hệ thống.
+Kiểm tra cài đặt bằng cách mở cửa sổ dòng lệnh và chạy lệnh python --version và pip --version. Nếu không có lỗi xuất hiện và phiên bản Python và pip được hiển thị, điều đó có nghĩa là cài đặt đã thành công.
+
+Bước 2: Mở Terminal hoặc Command Prompt và di chuyển đến thư mục chứa tệp requirements.txt. 
+Bước 3: Cài đặt các thư viện từ requirements.txt. Sử dụng lệnh sau: 
+pip install -r requirements.txt
+
+Đó là tất cả những gì phải làm để cài đặt môi trường chạy website.
+
+Hướng dẫn cài đặt kiến trúc đường ống dữ liệu:
+Hệ thống được cài đặt và xây dựng trên một cụm máy Linux bao gồm 1 máy điều hành và máy thi hành.
+Danh sách các framework cần cài đặt:
+Cài đặt Hadoop 3.3.2 multi node bao gồm 1 máy điều hành và 1 máy thi hành: https://medium.com/@jootorres_11979/how-to-set-up-a-hadoop-3-2-1-multi-node-cluster-on-ubuntu-18-04-2-nodes-567ca44a3b12
+Cài đặt Spark 3.4.0 multi node bao gồm 1 máy điều hành và 1 máy thi hành:How to Install and Set Up an Apache Spark Cluster on Hadoop 18.04 | by João Torres | Medium
+Cài đặt Cassandra làm datawarehouse.
+Hướng dẫn chạy web crawler và đường ống dữ liệu:
+Hiện tại web crawler và hệ thống xử lý dữ liệu đang được chạy thông qua crontab của linux với định kì một lần /ngày.
+Hướng dẫn chạy trình thu thập dữ liệu và hệ thống xử lý dữ liệu thủ công: 
+Bước 1: Khởi động Hadoop và Spark, Cassandra
+Bước 2: Lưu địa chỉ ip của máy điều hành và máy thi hành vào file ip_address.txt theo thứ tự máy điều hành rồi đến máy thi hành.
+Bước 3: Khởi động trình thu thập dữ liệu qua các câu lệnh sau:
+$SPARK_HOME/sbin/spark-submit --master <ip_master> /WebCrawler/getUrl.py	
+Sau khi chạy câu lệnh sau thì thực hiện chạy câu lệnh trên ở cả 2 máy master và slave để thu thập dữ liệu thông qua các url vừa được thu thập.
+python3 /WebCrawler/crawl.py
+
+Cuối cùng, ở trên máy điều hành, ta thực hiện câu lệnh sau để xử lý dữ liệu và tải dữ liệu đến kho dữ liệu đích:
+$SPARK_HOME/sbin/spark-submit --master <ip_master> /ProcessandLoad/process_course.py
+$SPARK_HOME/sbin/spark-submit --master <ip_master> /ProcessandLoad/process_jobposting.py
+
+Để khởi động website trực quan hóa, thực hiện câu lệnh sau:
+python3 /WebVisualize/run.py

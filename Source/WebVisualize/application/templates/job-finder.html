@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+{% block content %}
+<header>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+</header>
+
+<div class="mt-4 m-4">
+    <form class="d-flex gap-2"
+          id="job-finder-form"
+          action="{{ url_for('jobFinder') }}"
+          method="POST">
+        <select class="form-select"
+                id="multiple-select-optgroup-field"
+                data-placeholder="Hãy chọn bộ lọc"
+                name="selected_options"
+                multiple>
+            {% for group in filter_data %}
+            <optgroup label="{{group['name']}}">
+                {% for value in group['value'] %}
+                <option value="{{group['name']}}: {{value}}">{{value}}</option>
+                {% endfor %}
+            </optgroup>
+            {% endfor %}
+        </select>
+        <button type="submit"
+                id="clear-button"
+                class="border-0 bg-body">
+            <img height="24"
+                 src="../static/img/clear-filter.png"
+                 alt="Icon clear" />
+        </button>
+
+        <button type="submit"
+                class="input-group-text btn-primary px-4">Tìm kiếm
+        </button>
+
+    </form>
+
+    {% if selected_options|length > 0 %}
+    <div class="mt-4">
+        <h2 class="text-danger">Các tin tuyển dụng phù hợp ({{filtered_jobs|length}})</h2>
+        {% if filtered_jobs|length == 0 %}
+        <h4 class="text-center my-3 fw-bold">Không tìm thấy dữ liệu</h4>
+        {% endif %}
+        {% if filtered_jobs|length > 0 %}
+        <div class="search-result-container row row-cols-auto mt-4 p-3 m-auto gap-4 overflow-auto">
+            {% for index,row in filtered_jobs.iterrows() %}
+            <div class="filterd-item-container p-0 col border border-1 border-info"
+                 onclick="window.open('{{ row['link'] }}', '_blank')">
+                <div class="filterd-item-title bg-light p-2 d-flex justify-content-between align-items-center border-bottom border-bottom-1 border-info">
+                    <span class="filterd-item-name text-primary p-1 overflow-ellipsis">{{ row['title'] }}</span>
+                </div>
+                <div class="filterd-item-info p-2">
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">Lĩnh vực:</span>
+                        <p class="text-end text-capitalize">{{ row['industry'] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">Mức lương:</span>
+                        <p class="text-end text-capitalize">{{ row['min_salary'] }} - {{ row['max_salary'] }} $</p>
+                    </div>
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">NN lập trình:</span>
+                        <p class="text-end text-capitalize">{{ row['programming_language'] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">Khung chương trình: </span>
+                        <p class="text-end text-capitalize">{{ row['framework'] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">Công cụ:</span>
+                        <p class="text-end text-capitalize">{{ row['tool'] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">Nền tảng:</span>
+                        <p class="text-end text-capitalize">{{ row['platform'] }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="w-75 border border-1 border-info rounded-1 my-4 mx-auto"></div>
+    <div class="mt-4">
+        <h2 class="text-danger ">Các tin tuyển dụng nổi bật</h2>
+        <div class="row row-cols-auto mt-4 m-auto gap-4">
+            {% for index,row in top_jobs.iterrows() %}
+            <div class="filterd-item-container p-0 col border border-1 border-info"
+                 onclick="window.open('{{ row['link'] }}', '_blank')">
+                <div class="filterd-item-title bg-light p-2 d-flex justify-content-between align-items-center border-bottom border-bottom-1 border-info">
+                    <span class="filterd-item-name text-primary p-1 overflow-ellipsis">{{ row['title'] }}</span>
+                </div>
+                <div class="filterd-item-info p-2">
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">Lĩnh vực:</span>
+                        <p class="text-end text-capitalize">{{ row['industry'] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">Mức lương:</span>
+                        <p class="text-end text-capitalize">{{ row['min_salary'] }} - {{ row['max_salary'] }} $</p>
+                    </div>
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">NN lập trình:</span>
+                        <p class="text-end text-capitalize">{{ row['programming_language'] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">Khung chương trình: </span>
+                        <p class="text-end text-capitalize">{{ row['framework'] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">Công cụ:</span>
+                        <p class="text-end text-capitalize">{{ row['tool'] }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between gap-1">
+                        <span class="fw-bold">Nền tảng:</span>
+                        <p class="text-end text-capitalize">{{ row['platform'] }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $('#multiple-select-optgroup-field').select2({
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        closeOnSelect: false,
+    });
+    // Set selected options after DOM load
+    var selectedOptions = {{ selected_options| tojson}};
+    $('#multiple-select-optgroup-field').val(selectedOptions);
+    $('#multiple-select-optgroup-field').trigger('change');
+
+    $('#clear-button').click(function () {
+        $('#multiple-select-optgroup-field').val(null);
+        $('#multiple-select-optgroup-field').trigger('change');
+    });
+</script>
+
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/finder.css') }}" />
+{% endblock %}
+{% endblock %}

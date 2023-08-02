@@ -1,0 +1,44 @@
+.hero {
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.feature{
+  box-shadow: 0 4px 4px rgba(31, 31, 31, 0.1);
+  padding: 15px 10px;
+  width: fit-content;
+  min-width: 450px;
+  max-width: 550px;
+}
+
+.btn {
+  width: 80%;
+}
+
+.statistic-item {
+  flex-basis: 20%;
+  min-width: 250px;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+.rectangle{
+  width: 10px;
+}
+
+.linear-underlined{
+  height: 4px;
+  width: 200px;
+  background: linear-gradient(80deg,#5593dc,#66c5d9 80%,#69cada);
+  border-radius: 2px;
+}
+
+section{
+  padding: 20px;
+}

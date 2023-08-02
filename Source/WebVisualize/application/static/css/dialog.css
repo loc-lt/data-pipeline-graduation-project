@@ -1,0 +1,7 @@
+.modal-dialog{
+    margin-top: 50px;
+    width: 95vw !important;
+    max-width: 1200px;
+    max-height: 1200px;
+    overflow: auto;
+}

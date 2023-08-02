@@ -1,0 +1,72 @@
+{% extends "layout.html" %} {% block content %}
+<div class="d-flex flex-column">
+  <section class="px-5 py-4 source-data">
+    <div class="d-flex gap-2 align-items-center mb-4">
+      <img height="32"
+           src="../static/img/data-source.png"
+           alt="Icon database" />
+      <h2 class="title">Nguồn dữ liệu</h2>
+    </div>
+    {% for source in source_data %}
+    <div class="course-data mb-5">
+      <h3 class="title text-center">{{source['title']}}</h3>
+      <div class="linear-underlined mx-auto mb-3"></div>
+      <div class="row row-cols-auto justify-content-center gap-4 mx-auto">
+        {% for web in source['data'] %}
+        <div
+             class="source-item col text-center px-3 py-3 rounded-3 bg-light d-flex flex-column gap-3 px-3 py-4 rounded-3 bg-light d-flex flex-column gap-3">
+          <span class="source-title">{{ web['title'] }}</span>
+          <div>
+            <div class="d-flex gap-3 justify-content-center">
+              {% for field in web['information'] %}
+              <div>
+                <div class="rounded-circle bg-info d-flex justify-content-center align-items-center mx-auto mb-1"
+                     style="width: 100px; height: 100px">
+                  <span class="text-white">{{field['value']}}</span>
+                </div>
+                <p class="m-0">{{field['title']}}</p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <a href="{{ web['website'] }}"
+             class="btn btn-outline-primary mx-auto px-3"
+             target="_blank">Truy cập website</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="px-5 py-4 colect-data d-flex flex-column gap-4 bg-light">
+    <div class="d-flex gap-2 align-items-center">
+      <img height="30"
+           src="../static/img/spider.png"
+           alt="Icon database" />
+
+      <h2 class="title">Thu thập dữ liệu</h2>
+    </div>
+    <p>
+      Chúng tôi xây dựng một hệ thống data pipeline, được thiết kế để thu thập dữ liệu từ các trang web khóa học và
+      tuyển dụng hàng đầu. Với việc xây dựng một hệ thống hiệu quả và tự động, chúng tôi giúp các tổ chức thu thập thông
+      tin quan trọng từ nguồn dữ liệu đa dạng và phong phú.
+      Hệ thống của chúng tôi sẽ tự động quét, trích xuất và lưu trữ thông tin từ các trang web khóa học, cung cấp cho
+      bạn cái nhìn toàn diện về các khóa học, nội dung và yêu cầu kỹ năng. Đồng thời, chúng tôi cũng thu thập thông tin
+      từ các trang web tuyển dụng, giúp bạn nắm bắt xu hướng tuyển dụng, vị trí việc làm và yêu cầu kỹ năng từ các công
+      ty hàng đầu.
+      Với hệ thống data pipeline của chúng tôi, bạn sẽ tiết kiệm thời gian và công sức trong việc tìm kiếm, thu thập và
+      phân tích dữ liệu từ các nguồn khác nhau. Bạn sẽ có được cái nhìn toàn diện và cập nhật về thị trường khóa học và
+      việc làm, từ đó đưa ra những quyết định thông minh và chiến lược.
+    </p>
+    <div class="text-center">
+      <img src="../static/img/data-pipeline.drawio.png"
+           width="90%"
+           alt="Image description" />
+    </div>
+  </section>
+</div>
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/data.css') }}" />
+{% endblock %} {% endblock %}

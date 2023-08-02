@@ -1,0 +1,78 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="d-flex flex-column">
+  <div class="p-4">
+    <div class="d-flex gap-3 align-items-center mb-3">
+      <img src="../static/img/idea.png"
+           height="32"
+           alt="Member Avatar" />
+      <h2>Giới thiệu</h2>
+    </div>
+    <p>
+
+      Chào mừng bạn đến với trang web của chúng tôi! Chúng tôi giới thiệu một nền tảng trực tuyến, tập
+      trung vào việc trực quan hóa và tìm kiếm khóa học và việc làm trong lĩnh vực Công nghệ thông tin (IT).
+
+      Với sự kết hợp giữa dữ liệu thu thập từ các nguồn đáng tin cậy và khả năng trực quan hóa, trang web của chúng tôi
+      cung cấp cho bạn một trải nghiệm tuyệt vời khi khám phá và tìm hiểu về lĩnh vực IT.
+
+      Bạn có thể dễ dàng tìm kiếm và duyệt qua hàng ngàn khóa học về lập trình, mạng, trí tuệ nhân tạo và nhiều lĩnh vực
+      công nghệ thông tin khác. Chúng tôi cung cấp thông tin chi tiết về nội dung khóa học, đánh giá, độ khó và cả yêu
+      cầu kỹ năng. Điều này giúp bạn lựa chọn những khóa học phù hợp với mục tiêu và sự phát triển cá nhân của bạn.
+
+      Ngoài ra, chúng tôi cũng cung cấp thông tin về các vị trí việc làm trong lĩnh vực IT từ các công ty hàng đầu. Bạn
+      có thể khám phá thông tin về các vị trí, yêu cầu kỹ năng, mức lương và địa điểm làm việc. Điều này giúp bạn có cái
+      nhìn tổng quan về thị trường việc làm IT và chuẩn bị tốt hơn cho sự nghiệp của mình.
+
+      Hãy khám phá và tận hưởng trải nghiệm đầy hứa hẹn trên trang web của chúng tôi. Chúng tôi tin rằng chúng sẽ giúp
+      bạn đạt được những mục tiêu và ước mơ trong sự nghiệp công nghệ thông tin của bạn.
+    </p>
+  </div>
+  <div class="p-4 bg-light">
+    <div class="d-flex gap-3 align-items-center mb-3">
+      <img src="../static/img/slogan.png"
+           height="32"
+           alt="Member Avatar" />
+      <h2>Khẩu hiệu</h2>
+    </div>
+    <p>
+      Phát huy tiềm năng của dữ liệu cho một tương lai thông minh hơn
+    </p>
+  </div>
+
+  <div class="p-4">
+    <div class="d-flex gap-3 align-items-center mb-3">
+      <img src="../static/img/teamwork.png"
+           height="32"
+           alt="Member Avatar" />
+      <h2>Thành viên</h2>
+    </div>
+
+    <div class="row row-cols-auto justify-content-center gap-4 mx-auto">
+      {% for member in team_members %}
+      <div class="item-member col text-center d-flex flex-column gap-3 px-3 py-4">
+        <div class="avatar text-center">
+          <img src="{{ member['image'] }}"
+               width="100"
+               height="100"
+               alt="Member Avatar" />
+        </div>
+        <div class="name fw-bold">{{ member['name'] }}</div>
+        <div class="role">{{member['role']}}</div>
+        <div class="information d-flex flex-column gap-2">
+          {% for field in member['information'] %}
+          <div class="d-flex justify-content-between">
+            <span class="fw-bold">{{ field['title'] }} :</span>
+            <span>{{ field['value'] }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/about.css') }}" />
+{% endblock %} {% endblock %}

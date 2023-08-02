@@ -1,0 +1,50 @@
+.box {
+    width: 220px;
+    height: 180px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  .box:hover{
+    scale: 1.03;
+  }
+  
+  #box1 {
+    background-color: #FFC0CB;
+  }
+  
+  #box2 {
+    background-color: #FFD700;
+  }
+  
+  #box3 {
+    background-color: #00FFFF;
+  }
+  
+  #box4 {
+    background-color: #90EE90;
+  }
+
+  #box5 {
+    background-color: #e998f0;
+  }
+
+  #box6 {
+    background-color: #85dfcb;
+  }
+  
+  .number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #FFF;
+  }
+  
+  .text {
+    font-size: 20px;
+    color: #000;
+  }
